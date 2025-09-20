@@ -34,8 +34,7 @@
       var is_top_frame = (window === window.parent);
         
         var pageToc = [
-          {title: ":material-home: \u6b22\u8fce\u4f7f\u7528 MkDocs Material \u6587\u6863\u7ad9\u70b9", url: "#_top", children: [
-              {title: ":material-rocket: \u5feb\u901f\u4e0a\u624b\uff1a\u4e00\u952e\u542f\u52a8\u672c\u5730\u9884\u89c8", url: "#material-rocket" },
+          {title: "\u81ea\u5b9a\u4e49\u4e3b\u9898", url: "#_top", children: [
           ]},
         ];
 
@@ -93,9 +92,9 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <nav class="wm-toc-pane">
   
   <ul class="wm-toctree">
-        <li class="wm-toc-li wm-toc-lev1 "><a href="about.html" class="wm-article-link wm-toc-text">ABOUT</a>
-</li>
         <li class="wm-toc-li wm-toc-lev1 "><a href="" class="wm-article-link wm-toc-text">HOME</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="about.html" class="wm-article-link wm-toc-text">ABOUT</a>
 </li>
         <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">ARTICLE</span>
 </li>
@@ -135,34 +134,143 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
       </a>
     </div>
     
-    <div class="wm-article-nav">
-      <a href="about.html" class="btn btn-xs btn-default pull-left">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="about.html" class="btn btn-xs btn-link">
-        ABOUT
-      </a>
-    </div>
-    
   </div>
 
     
 
-    <h1 id="material-home-mkdocs-material"><span class="twemoji">:material-home:</span> 欢迎使用 MkDocs Material 文档站点</h1>
-<div style="color: #64748b; margin: 1rem 0 2rem; font-size: 1.1rem;">基于优雅的 Material 主题构建，支持响应式设计、黑夜模式与高效文档管理</div>
-
-<h2 id="material-rocket"><span class="twemoji">:material-rocket:</span> 快速上手：一键启动本地预览</h2>
-<details open style="border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 2rem;">
-  <summary style="padding: 1rem; font-weight: 600; cursor: pointer; background-color: #f8fafc;">
-    点击展开/收起操作步骤（新手优先看这里）
-  </summary>
-  <div style="padding: 0 1rem 1rem; line-height: 1.6;">
-    <p style="margin: 1rem 0; color: #334155;"><strong>1. 环境要求</strong>：已安装 Python 3.8+（推荐 3.10+），可通过 <code>python --version</code> 检查版本</p>
-    <p style="margin: 1rem 0; color: #334155;"><strong>2. 执行指令</strong（复制到终端运行，关键步骤已高亮）：</p>
-    ```bash linenums="1" hl_lines="2 4"
-    # 1. 安装依赖（仅首次执行，后续无需重复）
-    pip install mkdocs-material mkdocs-minify-plugin --upgrade
-    # 2. 启动本地预览（修改文档实时生效）
-    mkdocs serve --dev-addr 0.0.0.0:8000
+    <p>MkDocs 文档中心
+欢迎来到 MkDocs 文档中心！MkDocs 是一个快速、简单且完全免费的静态站点生成器，专门用于构建项目文档。文档源文件使用 Markdown 编写，通过单个 YAML 配置文件进行配置。</p>
+<p>https://www.mkdocs.org/img/icon.png</p>
+<p>✨ 主要特性
+🚀 快速构建 - 基于 Python 的高效构建过程，快速生成静态站点</p>
+<p>🎨 美观主题 - 内置多个精美主题，支持完全自定义</p>
+<p>🔍 即时搜索 - 内置全文搜索功能，无需服务器端处理</p>
+<p>📱 响应式设计 - 在移动设备上完美展示</p>
+<p>🔧 高度可扩展 - 支持丰富的插件生态系统</p>
+<p>🚀 快速开始
+安装 MkDocs
+使用 pip 安装 MkDocs：</p>
+<p>bash
+pip install mkdocs
+创建新项目
+bash
+mkdocs new my-project
+cd my-project
+预览文档
+启动开发服务器：</p>
+<p>bash
+mkdocs serve
+然后在浏览器中访问 http://localhost:8000</p>
+<p>构建站点
+构建静态站点以进行部署：</p>
+<p>bash
+mkdocs build
+这将在 site 目录中生成完整的静态网站。</p>
+<p>🎯 核心功能
+简洁的配置
+MkDocs 使用简单的 YAML 配置文件：</p>
+<p>yaml
+site_name: My Docs
+site_description: 我的项目文档
+site_author: 您的姓名</p>
+<p>theme:
+  name: material</p>
+<p>nav:
+  - 首页: index.md
+  - 指南: guide.md
+  - API 参考: api.md</p>
+<p>plugins:
+  - search
+丰富的主题支持
+MkDocs 支持多种主题：</p>
+<p>mkdocs - 默认主题，简洁清晰</p>
+<p>readthedocs - 仿 ReadTheDocs 风格</p>
+<p>material - Material Design 风格，功能丰富</p>
+<p>插件生态系统
+扩展 MkDocs 功能：</p>
+<p>mkdocs-minify - 压缩 HTML、JS 和 CSS</p>
+<p>mkdocs-rss - 生成 RSS 订阅</p>
+<p>mkdocs-git-revision-date-localized - 显示页面最后更新时间</p>
+<p>mkdocs-redirects - 创建页面重定向</p>
+<p>📖 使用指南
+编写内容
+在 docs 目录中创建 Markdown 文件来编写您的文档内容。</p>
+<p>注意事项
+!!! note "提示"
+这是一个提示框。</p>
+<p>!!! warning "警告"
+这是一个警告框。</p>
+<p>!!! danger "危险"
+这是一个危险警告框。</p>
+<p>text</p>
+<h3 id="_1">自定义主题</h3>
+<p>通过修改 <code>mkdocs.yml</code> 来自定义主题：</p>
+<p>```yaml
+theme:
+  name: material
+  palette:
+    primary: teal
+    accent: pink
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - navigation.expand
+    - search.highlight
+🌐 部署选项
+GitHub Pages
+使用 gh-deploy 命令轻松部署到 GitHub Pages：</p>
+<p>bash
+mkdocs gh-deploy
+其他平台
+MkDocs 生成的静态站点可以部署到任何 Web 服务器：</p>
+<p>Netlify</p>
+<p>Vercel</p>
+<p>AWS S3</p>
+<p>您自己的服务器</p>
+<p>📊 版本信息
+版本  发布日期    主要特性
+1.4.0   2022-10-15  支持 Python 3.11，新增插件API
+1.3.0   2022-05-20  改进搜索功能，性能优化
+1.2.0   2022-01-10  新增主题支持，插件系统改进
+🤝 社区贡献
+MkDocs 是一个开源项目，欢迎社区贡献：</p>
+<p>报告问题</p>
+<p>提交功能请求</p>
+<p>贡献代码</p>
+<p>改进文档</p>
+<p>分享使用经验</p>
+<p>开发环境设置
+bash
+git clone https://github.com/mkdocs/mkdocs.git
+cd mkdocs
+pip install -e .
+📝 常见问题
+如何添加自定义 CSS？
+在 mkdocs.yml 中添加：</p>
+<p>yaml
+extra_css:
+  - stylesheets/extra.css
+然后在 docs/stylesheets/extra.css 中编写自定义样式。</p>
+<p>如何支持多语言？
+MkDocs 本身不直接支持多语言，但可以通过以下方式实现：</p>
+<p>为每种语言创建单独的目录</p>
+<p>使用插件如 mkdocs-static-i18n</p>
+<p>为每种语言配置单独的构建</p>
+<p>如何添加数学公式？
+使用 pymdownx.arithmatex 扩展：</p>
+<p>yaml
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+然后在页面中使用 $$E = mc^2$$ 语法。</p>
+<p>📞 获取帮助
+📚 官方文档</p>
+<p>💬 社区讨论</p>
+<p>🐛 问题报告</p>
+<p>🚀 GitHub 仓库</p>
+<p>感谢您使用 MkDocs！我们希望这个工具能帮助您创建出美观、专业的文档。</p>
 
   <br>
     
@@ -184,14 +292,6 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
       </a>
     </div>
     
-    <div class="wm-article-nav">
-      <a href="about.html" class="btn btn-xs btn-default pull-left">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="about.html" class="btn btn-xs btn-link">
-        ABOUT
-      </a>
-    </div>
-    
   </div>
 
     <br>
@@ -205,5 +305,5 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </html>
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-09-20 13:02:55.104066+00:00
+Build Date UTC : 2025-09-20 13:13:39.474061+00:00
 -->
