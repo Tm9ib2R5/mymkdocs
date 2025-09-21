@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>List - N0b0dy's blog</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "\u7ebf\u6027\u8868", url: "#_top", children: [
+              {title: "\u5b9a\u4e49", url: "#_2" },
+              {title: "\u987a\u5e8f\u8868", url: "#_3" },
+              {title: "\u5355\u94fe\u8868", url: "#_10" },
+              {title: "\u5faa\u73af\u94fe\u8868", url: "#_18" },
+              {title: "\u53cc\u5411\u94fe\u8868", url: "#_19" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../../about.html" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../../about.html" class="btn btn-xs btn-link">
+        ABOUT
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../../article/hello/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../../article/hello/" class="btn btn-xs btn-link">
+        Hi
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="_1">线性表</h1>
+<h2 id="_2">定义</h2>
+<p>在日常生活中，线性表的例子比比皆是。例如，26个英文字母的字母表：(A, B, C, …，Z) 是一个线性表，表中的数据元素是单个字母。在稍复杂的线性表中，一个数据元素可以包含若干个数据项。例如在第1章中提到的学生基本信息表，每个学生为一个数据元素，包括学号、姓名、性别、籍贯、专业等数据项。由以上示例可以看出，它们的数据元素虽然不 同，但同一线性表中的元素必定具有相同的特
+性，即属千同一数据对象，相邻数据元素之间存在着序偶关系。诸如此类由n个数据特性相同的元素构成的有限序列称为线性表。线性表中元素的个数n定义为线性表的长度，n=O时称为空表。
+对千非空的线性表或线性结构，其特点是：
+(1)存在唯一的一个被称作“第一个＂的数据元素；
+(2)存在唯一的一个被称作“最后一个＂的数据元素；
+(3)除第一个之外，结构中的每个数据元素均只有一个前驱；
+(4)除最后一个之外，结构中的每个数据元素均只有一个后继。
+线性表是一个相当灵活的数据结构，其长度可根据需要增长或缩短，即对线性表的数据元素
+不仅可以进行访问，而且可以进行插入和删除等操作。
+类型格式对各种数据结构进行描述。下面给出线性表的抽象数据类型定义：</p>
+<pre><code class="language-c">ADT List{ 
+数据对象：
+数据关系：
+基本操作：
+Ini tList (&amp;L) 
+操作结果：构造一个空的线性表L。
+DestroyList(&amp;L) 
+初始条件：线性表L已存在。
+操作结果：销毁线性表L。
+ClearList (&amp;L) 
+初始条件：线性表L已存在。
+操作结果：将L重置为空表。
+ListEmpty(L) 
+初始条件：线性表L已存在。
+操作结果：若L为空表，则返回true, 否则返回false。
+ListLength(L) 
+初始条件：线性表L已存在。
+操作结果：返回L中数据元素个数。
+GetElem(L,i,&amp;e) 
+初始条件：线性表L巳存在，且1:,s;i:os;ListLength(L)。
+操作结果：用e返回L中第1个数据元素的值。
+LocateElem(L,e) 
+初始条件：线性表L已存在。
+操作结果：返回L中第1个值与e相同的元素在L中的位置。若这样的数据元素不存在，则返回值为0。
+PriorElem(r,,cur_e,&amp;pre_e) 
+初始条件：线性表L已存在。
+操作结果：若cur_e是L的数据元素，且不是第一个，则用pre_e返回其前驱，否则操作失败，pre_e无定义。
+NextElem(L,cur_e,&amp;next_e) 
+初始条件：线性表L已存在。
+操作结果：若cur_e是L的数据元素，且不是最后一个，则用next_e返回其后继，否则操作失败，next_e无定义。
+Listinsert(&amp;L,i,e) 
+初始条件：线性表L已存在，且1:,s;i:os;ListLength (L) +l。
+操作结果：在L中第1个位置之前插入新的数据元素 e, L的长度加1。
+ListDelete(&amp;L,i) 
+初始条件：线性表L已存在且非空，且l:os;i:os;ListLength(L)。
+操作结果：删除L的第1个数据元素，L的长度减1。
+TraverseList(L) 
+初始条件：线性表L已存在。
+操作结果：对线性表L进行遍历，在遍历过程中对L的每个结点访问一次。
+ }ADT List 
+</code></pre>
+<h2 id="_3">顺序表</h2>
+<p>线性表的顺序表示指的是用一组地址连续的存储单元依次存储线性表的数据元素，这种表示
+也称作线性表的顺序存储结构或顺序映像。通常，称这种存储结构的线性表为顺序表(Sequential
+ List)。其特点是，逻辑上相邻的数据元素，其物理次序也是相邻的。
+假设线性表的每个元素需占用l个存储单元，并以所占的第一个单元的存储地址作为数据元
+素的存储起始位置。则线性表中第i+ 1个数据元素的存储位置LOC(a;+1)和第i个数据元素的存
+储位置LOC(a;)之间满足下列关系：
+LOC(a;+ 1) = LOC(a;) + I 
+一般来说，线性表的第l个数据元素a;的存储位置为：
+LOC(a;) = LOC(a1) + (i - I) x / 
+式中，LOC(a1)是线性表的第一个数据元素a1 的存储
+存储地址
+位置，·通常称作线性表的起始位置或基地址，表中相
+邻的元素a;和a; +I 的存储位置LOC(a;)和LOC(a;+ 1) 
+是相邻的。每一个数据元素的存储位置都和线性表的
+起始位置相差一个常数，这个常数和数据元素在线性
+表中的位序成正比。由此，只要确定了存
+储线性表的起始位置， 线性表中任一数据元素都可随
+机存取，所以线性表的顺序存储结构是一种随机存取
+的存储结构。
+由于高级程序设计语言中的数组类型也有随机存取
+的特性，因此，通常都用数组来描述数据结构中的顺序
+存储结构。在此，由于线性表的长度可变，且所需最大
+存储空间随问题不同而不同，则在C语言中可用动态分
+配的一维数组表示线性表，描述如下</p>
+<pre><code class="language-c">#define MAXSIZE 100 
+typedef struct 
+{
+    ElemType *elem; 
+    int length; 
+}SqList; 
+</code></pre>
+<h3 id="_4">初始化</h3>
+<p>顺序表的初始化操作就是构造一个空的顺序表。
+算法2.1 顺序表的初始化
+【算法步骤】
+心为顺序表L动态分配一个预定义大小的数组空间，使elem指向这段空间的基地址。将表的当前长度设为0。</p>
+<pre><code class="language-C++">Status InitList(SqList &amp;L) 
+{
+ L.elem= new ElemType[MAXSIZE]; 
+ if (! L. elem) exit (OVERFLOW); 
+  L.length=O; 
+  return OK; 
+}
+</code></pre>
+<p>动态分配线性表的存储区域可以更有效地利用系统的资源， 当不需要该线性表时， 可以使用
+销毁操作及时释放占用的存储空间。</p>
+<h3 id="_5">顺序表的取值</h3>
+<p>【算法步骤】
+判断指定的位置序号 i值是否合理 , 若不合理，则返回ERROR。
+若i值合理，则将第i个数据元素L.elem[i-1]赋给参数 e, 通过 e返回第1个数据元素的
+传值。
+【算法描述】</p>
+<pre><code class="language-c">Status GetElem(SqList L,int i,ElemType &amp;e) 
+{
+    if (i&lt;ll li&gt;L.length) return ERROR; 
+    e=L.elem[i一1];
+    return OK; 
+}
+</code></pre>
+<h3 id="_6">查找</h3>
+<p>查找操作是根据指定的元素值e, 查找顺序表中第1个与e相等的元素。若查找成功，则返
+回该元素在表中的位置序号；若查找失败，则返回0。
+算法2.3 顺序表的查找
+【算法步骤】
+心从第一个元素起，依次和e相比较，若找到与e相等的元素L.elem[i], 则查找成功，返回
+该元素的序号 i+l。
+＠若查遍整个顺序表都没有找到，则查找失败，返回0。
+【算法描述】</p>
+<pre><code class="language-c">int LocateELem(SqList L,ElemType e) 
+{／／在顺序表1中查找值为e的数据元素， 返回其序号
+for(i=O;i&lt; L.length;i++) 
+if(L.elem[i)==e) return i+l; 
+return O; 
+}
+／／查找成功， 返回序号i+l
+／／查找失败， 返回0
+</code></pre>
+<p>【算法分析】
+当在顺序表中查找一个数据元素时，其时间主要耗费在数据的比较上，而比较的次数取决千
+被查元素在线性表中的位置。
+在查找时，为确定元素在顺序表中的位置，需和给定值进行比较的数据元素个数的期望值称
+为查找算法在查找成功时的平均查找长度 (AverageSearch Length, ASL)。
+假设p是查找第l个元素的概率，为找到表中其关键字与给定值相等的第l个记录时，
+和给定值已进行过比较的关键字个数，则在长度为n的线性表中，查找成功时的平均查找长
+度为1</p>
+<h3 id="_7">插入</h3>
+<p>线性表的插入操作是指在表的第l个位置插入一个新的数据元素e, 使长度为n的线性表
+(a1,···,···,an) 
+变成长度为n+l的线性表
+(a1,..., ...,a
+ n
+ ) 
+数据元素a;-1和a;之间的逻辑关系发生了变
+化。在线性表的顺序存储结构中，由于逻辑上相邻
+的数据元素在物理位置上也是相邻的，因此，除非
+i =n+l, 否则必须移动元素才能反映这个逻辑关系
+的变化。</p>
+<h3 id="_8">顺序表的插入</h3>
+<p>［算法步骤】
+心判断插入位置l是否合法(i值的合法范围是l�i�n+I), 若不合法 则返回ERROR。
+判断顺序表的存储空间是否已满，若满见肤返回ERROR。
+将第n个至第l个位置的元素依次向后移动一个位置，空出第l个位置
+(a) 插入前n=8 (b) 插入后n=9
+图2.5 线性表插入前后的状况
+移动）。
+将要插入的新元素e放入第i个位置。
+表长加l。
+【算法描述】</p>
+<pre><code class="language-c">Status Listinsert(SqList &amp;L,int i ,ElemType e) 
+{//在顺序表L 中第 l.个位置之前插入新的元素e, i值的合法范围是1..;i..;L.length+l 
+if((i&lt;l) 11 (i&gt;L.length+l)) return ERROR; 
+if(L.length==MAXSIZE) return ERROR; 
+for (j=L. length-1; j&gt;=i-1; j--) 
+
+ L.elem[j+l]=L.elem[j];
+ L.elem[i-l]=e;
+ ++L.length; 
+return OK;
+／／插入位置及之后的元素后移
+／／将新元素e放入第l个位置
+／／表长加1
+}
+</code></pre>
+<p>上述算法没有处理表的动态扩充， 因此当表长巳经达到预设的最大空间时，则不能再插入
+元素。
+顺序表插入算法的平均时间复杂度为O(n)。</p>
+<h3 id="_9">删除</h3>
+<p>线性表的删除操作是指将表的第i个元素删去，将长度为n的线性表
+元素 
+变成长度为n-1的线性表
+一般情况下，删除第i(1::Si::Sn)个元素时需将第i+ 1 
+个至第n个元素（共n-i个元素） 依次向前移动一个位置
+(i = n 时无需移动）。
+算法2.5 顺序表的删除
+［算法步骤】
+心判断删除位置i是否合法（合法值为1::Si::Sn), 若
+不合法则返回ERROR。
+将第l个至第n个的元素依次向前移动一个位置 (i= n时无需移动）。
+(a)删除前n=8 (b)删除后n=7
+图2.6 线性表删除前后的状况
+【算法描述】</p>
+<pre><code class="language-c"> Status ListDelete(SqList &amp;L,int i) 
+{//在顺序表L中删除第J.个元素，J.值的合法范围是1.;;i.;;L.length 
+if((i&lt;l) 11 (i&gt;L.length)) return ERROR; 
+for (j=i; j &lt;=L. length-1; j ++) 
+    L.elem[j-1]=1.elem[j];
+L-&gt;length--; 
+return OK; 
+／／被删除元素之后的元素前移
+／／表长减1
+}
+</code></pre>
+<p>【算法分析】
+当在顺序表中某个位置上删除一个数据元素时，其时间主要耗费在移动元素上，而移动元素
+的个数取决千删除元素的位置。
+顺序表删除算法的平均时间复杂度为O(n)。
+顺序表可以随机存取表中任一元素，其存储位置可用一个简单、直观的公式来表示。然而，
+从另一方面来看，这个特点也造成了这种存储结构的缺点：在做插入或删除操作时，需移动大
+最元素。另外由千数组有长度相对固定的静态特性，当表中数据元素个数较多且变化较大时，
+操作过程相对复杂，必然导致存储空间的浪费。所有这些问题，都可以通过线性表的另一种表 </p>
+<h2 id="_10">单链表</h2>
+<p>线性表链式存储结构的特点是：用一组任意的存储单元存储线性表的数据元素（这组存储单
+元可以是连续的，也可以是不连续的）。因此，为了表示每个数据元素a,与其直接后继数据元素
+之间的逻辑关系，对数据元素a,来说，除了存储其本身的信息之外，还需存储一个指示其直
+接后继的信息（即直接后继的存储位置）。这两部分信息组成数据元素a,的存储映像，称为结点
+(node)。它包括两个域：其中存储数据元素信息的域称为数据域；存储直接后继存储位置的域称
+为指针域。指针域中存储的信息称作指针或链。n个结点链结成一
+个链表，即为线性表
+(a1, a2;··, an) 
+的链式存储结构。又由于此链表的每个结点中只包含一个指针域，故又称线性链表或单链表。
+根据链表结点所含指针个数、指针指向和指针连接方式，可将链表分为单链表、循环链表、
+双向链表、二叉链表、十字链表、邻接表、邻接多重表等。其中单链表、循环链表和双向链表用
+千实现线性表的链式存储结构，其他形式多用于实现树和图等非线性结构。
+本节先讨论单链表，例如，图2.7所示为线性表的单链表存储结构，整个链表的存取必须从
+头指针开始进行，头指针指示链表中第一个结点（即第一个数据元素的存储映像，也称首元结点）
+的存储位置。同时，由千最后一个数据元素没有直接后继，则单链表中最后一个结点的指针为空
+(NULL)。
+存储地址 数据域 指针域 
+用单链表表示线性表时，数据元素之间的逻辑关系是由结点中的指针指示的。换句话说，指
+针为数据元素之间的逻辑关系的映像，则逻辑上相邻的两个数据元素其存储的物理位置不要求紧
+邻，由此，这种存储结构为非顺序映像或链式映像。
+通常将链表画成用箭头相链接的结点的序列，结点之间的箭头表示链域中的指针
+中数据元素之间的逻辑顺序，而不是每个数据元素在存储器中的实际位置。</p>
+<h3 id="_11">逻辑状态</h3>
+<pre><code class="language-c">typedef struct LNode 
+{ElemType data;
+struct LNode *next; 
+}LNode,*LinkList; 
+</code></pre>
+<p>(1)这里定义的是单链表中每个结点的存储结构，它包括两部分：存储结点的数据
+域data,其类型用通用类型标识符ElemType表示（例如，用链表表示案例2.1中的图书
+信息时，只需将ElemType替换为2.4.1定义的Book数据类型即可）；存储后继结点位置
+的指针域next,其类型为指向结点的指针类型LNode<em>。
+(2)为了提高程序的可读性，在此对同一结构体指针类型起了两个名称，LinkList与
+LNode</em>, 两者本质上是等价的。通常习惯上用LinkList定义单链表，强调定义的是某个单链喊＇表的头指针；用LNode<em>定义指向单链表中任意结点的指针变量。例如，若定义LinkList L,
+惩明则L为单链表的头指针，若定义LNode</em>p, 则p为指向单链表中某个结点的指针，用<em>p代表
+该结点。当然也可以使用定义LinkList p,这种定义形式完全等价于LNode</em>p。
+(3)单链表是由表头指针唯一确定，因此单链表可以用头指针的名宇来命名。若头
+指针名是L,则简称该链表为表L。
+(4)注意区分指针变量和结点变量两个不同的概念，若定义LinkListp或LNode<em>p,
+则p为指向某结点的指针变量，表示该结点的地址；而</em>p为对应的结点变量，表示该结
+点的名称。
+一般情况下，为了处理方便，在单链表的第一个结点之前附设一个结点，称之为头结点。图</p>
+<p>下面对首元结点、头结点、头指针三个容易混淆的概念加以说明。
+(1)首元结点是指链表中存储第一个数据元素a1的结点。
+(2)头结点是在首元结点之前附设的一个结点，其指针域指向首元结点。头结点的喊＇数据域可以不存储任何信息，也可存储与数据元素类型相同的其他附加信息。例如，当
+骼赐数据元素为整数型时，头结点的数据域中可存放该线性表的长度。
+(3)头指针是指向链表中第一个结点的指针。若链表设有头结点，则头指针所
+指结点为线性表的头结点；若链表不设头结点，则头指针所指结点为该线性表的首
+元结点。
+链表增加头结点的作用如下。
+(1)便于首结点的处理
+增加了头结点后，首元结点的地址保存在头结点（即其“前驱”结点）的指针域中，则对链表
+的第一个数据元素的操作与其他数据元素相同，无需进行特殊处理。
+(2)便于空表和非空表的统一处理
+当链表不设头结点时，假设L为单链表的头指针，它应该指向首元结点，则当单链表为长度
+n为0的空表时，L指针为空（判定空表的条件可记为：L==NULL)。 
+增加头结点后，无论链表是否为空，头指针都是指向头结点的非空指针。如图2.10(a)所示
+的非空单链表，头指针指向头结点。若为空表，则头结点的指针域为空（判定空表的条件可记为：</p>
+<p>在顺序表中，由于逻辑上相邻的两个元素在物理位置上紧邻，则每个元素的存储位置都可从
+线性表的起始位置计算得到。而在单链表中，各个元素的存储位置都是随意的。然而，每个元素
+的存储位置都包含在其直接前驱结点的信息之中。假设p是指向单链表中第l个数据元素（结点
+即数据域为a;的结点）的指针，则p—&gt;next是指向第门l个数据元素（结点a;+I)的指针。
+换句话说，若p-&gt;data= a;, 则p-&gt;next-&gt;data = a;+1。由此，单链表是非随机存取的存储结构，要
+取得第l个数据元素必须从头指针出发顺链进行寻找，也称为顺序存取的存取结构。因此，其基
+本操作的实现不同于顺序表。</p>
+<h3 id="_12">初始化</h3>
+<p>单链表的初始化操作就是构造一个如图2.10(b)所示的空表。
+算法2.6 单链表的初始化</p>
+<p>【算法描述】</p>
+<pre><code class="language-c">Status InitList(LinkList &amp;L) 
+{
+L=new LNode; 
+1-&gt;next=NULL; 
+return OK; 
+}
+</code></pre>
+<p>／／生成新结点作为头结点， 用头指针L指向头结点
+／／头结点的指针域置空
+1. 取值
+和顺序表不同，链表中逻辑相邻的结点并没有存储在物理相邻的单元中，这样， 根据给定的
+结点位置序号i'在链表中获取该结点的值不能像顺序表那样随机访问，而只能从链表的首元结
+点出发，顺着链域next逐个结点向下访问。</p>
+<h3 id="_13">单链表的取值</h3>
+<p>【算法步骤】
+心用指针p指向首元结点，用八故计数器初值赋为1。从首结点开始依次顺着链域 next 向下访问，只要指向当前结点的指针p不为空
+(NULL), 并且没有到达序号为I的结点，则循环执行以下操作：
+退出循环时，如果指针p为空，或者计数器j大千i, 说明指定的序号i值不合法（！大于
+表长n或l小千等千0), 取值失败返回ERROR; 否则取值成功，此时j=i时，p所指的结点就
+是要找的第l个结点，用参数e保存当前结点的数据域，返回OK。
+【算法描述】</p>
+<pre><code class="language-c">Status GetElem(LinkList L,int i,ElemType &amp;e) 
+{/ /在带头结点的单链表L中根据序号l.获取元素的值，用e返回L中第l.个数据元素的值
+p=L-&gt;next;j=l; 
+while(p&amp;&amp;j&lt;i) 
+p=p-&gt;next; 
+++j; 
+if(!p!lj&gt;i)return ERROR; 
+e=p-&gt;data; 
+return OK; 
+}
+</code></pre>
+<p>【算法分析】
+最坏时间复杂度为O(n)。
+由此可见，单链表取值算法的平均时间复杂度为O(n)。</p>
+<h3 id="_14">查找</h3>
+<p>链表中按值查找的过程和顺序表类似，从链表的首元结点出发，依次将结点值和给定值e进
+行比较，返回查找结果。
+算法2.8 单链表的按值查找
+【算法步骤】
+心用指针p指向首元结点。
+＠从首元结点开始依次顺着链域next向下查找，只要指向当前结点的指针p不为空，并且
+p所指结点的数据域不等千给定值e, 则循环执行以下操作：p指向下一个结点。
+＠返回p。若查找成功，p此时即为结点的地址值，若查找失败，p的值即为NULL。
+【算法描述】</p>
+<pre><code class="language-c">LNode *LocateELem(LinkList L, Elemtype e) 
+{
+p=L-&gt;next; 
+while(p &amp;&amp; p-&gt;data!=e) 
+p=p-&gt;next; 
+return p; 
+}
+</code></pre>
+<p>【算法分析】
+该算法的执行时间与待查找的值e相关, 也为O(n)。</p>
+<h3 id="_15">插入</h3>
+<p>为插入数据元素x, 首先要生成一个数据域为x的结点，然后插入到单链表中。 根据插人操
+作的逻辑定义， 还需要修改结点a中的指针域， 令其指向结点x, 而结点x中的指针域应指向结
+点b, 从而实现3个元素a、 b和x之间逻辑关系的变化。 
+假设s为指向结点x的指针， 则上述指针修改用语句描述即为
+s-&gt;next = p-&gt;next; p-&gt;next = s; 
+算法2.9 单链表的插入
+【算法步骤】
+将值为e的新结点插人到表的第l个结点的位置上， 即插入到结点a;.1与a;之间，具体插入
+过程如图2.12所示， 图中对应的5个步骤说明如下。
+心查找结点a;-1并由指针p指向该结点。
+生成一个新结点<em>s。
+将新结点</em>s的数据域置为e。
+将新结点<em>s的指针域指向结点a;o
+将结点</em>p的指针域指向新结点*s。
+【算法描述】</p>
+<pre><code class="language-c">Status Listinsert(LinkList &amp;L,int i,ElemType e) 
+{
+p=L;j=O; 
+while (p &amp;&amp; (j&lt;i-1)) 
+{p=p-&gt;next;++j;} 
+／／查找第i-1个结点，p指向该结点
+if (!p I I j&gt;i-1) return ERROR; 
+s=new LNode; 
+s-&gt;data=e; 
+s-&gt;next=p-&gt;next; 
+ p-&gt;next=s; 
+return OK; 
+}
+
+</code></pre>
+<p>［算法分析］
+单链表的插入操作虽然不需要像顺序表的插入操作那样需要移动元素，但平均时间复杂度仍
+为O(n)。这是因为，为了在第l个结点之前插入一个新结点，必须首先找到第i-1 个结点， 其时
+间复杂度与算法2.7相同，为O(n)。</p>
+<h3 id="_16">删除</h3>
+<p>要删除单链表中指定位置的元素，同插入元素一样，首先应该找到该位置的前驱结点。
+如图2.13所示，在单链表中删除元素b时，应该首
+先找到其前驱结点a。为了在单链表中实现元素a、
+b和c之间逻辑关系的变化，仅需修改结点a中的
+指针域即可。假设p为指向结点a的指针，则修改
+指针的语句为
+图2.13 在单链表中删除结点时指针的变化
+p-&gt;next = p-&gt;next-&gt;next; 
+但在删除结点b时，除了修改结点a的指针域外，还要释放结点b所占的空间，所以在修改
+指针前，应该引入另一指针q, 临时保存结点b的地址以备释放。
+【算法描述】</p>
+<pre><code class="language-c">Status ListDelete(LinkList &amp;L,int i) 
+{
+p=L;j=O; 
+while ((p-&gt;next) &amp;&amp; (j&lt;i-1)) 
+{p=p-&gt;next; ++j;} 
+if (! (p-&gt;next) 11 (j&gt;i-1)) return ERROR; 
+q=p-&gt;next; 
+p-&gt;next=q-&gt;next; 
+delete q; 
+return OK; 
+}
+</code></pre>
+<p>删除算法中的循环条件(p-&gt;next&amp;&amp;j&lt;i-1)和插入算法中的循环条件(p&amp;&amp;(j&lt;i—1))是有所区别的。因为插入操作中合法的插入位置有n+l个，而删除操作中合法的删除位置只有n个，如果使用与插入操作相同的循环条件，则会出现引用空指针的情况，使删除操作失败。
+【算法分析】
+类似插入算法，删除算法时间复杂度亦为O(n)。</p>
+<h3 id="_17">后插法</h3>
+<p>后插法是通过将新结点逐个插入到链表的尾部来创建链表。 同前插法一样， 每次申请一个新
+结点， 读入相应的数据元素值。 不同的是， 为了使新结点能够插入到表尾， 需要增加一个尾指针
+r指向链表的尾结点。
+算法2.12 后插法创建单链表
+【算法步骤】
+创建一个只有头结点的空链表。
+＠尾指针r初始化， 指向头结点。
+＠根据创建链表包括的元素个数n, 循环n次执行以下操作：</p>
+<p>【算法描述】</p>
+<pre><code class="language-c">void CreateList_R(LinkList &amp;L,int n) 
+{
+ L=new LNode; 
+L-&gt;next=NULL; 
+r=L; 
+for(i=O;i&lt;n;++i) 
+p=new LNode; 
+cin&gt;&gt;p-&gt;data; 
+p-&gt;next=NULL; r-&gt;next=p; 
+r=p; 
+}
+</code></pre>
+<p>时间复杂度亦为O(n)。 </p>
+<h2 id="_18">循环链表</h2>
+<p>1.先建立一个带头结点的空链表
+2.尾指针r指向头结点
+3.生成新结点
+4.输人元素值赋给新结点<em>p的数据域
+将新结点</em>p插人尾结点*r之后
+循环链表(CircularLinked List)是另一种形式的链式存储结构。其特点是表中最后一个结点
+的指针域指向头结点，整个链表形成一个环。由此，从表中任一结点出发均可找到表中其他结点，。
+循环单链表的操作和单链表基本一致，差别仅在于：当链表遍历时，判别当前指针p是否
+指向表尾结点的终止条件不同。在单链表中，判别条件为p!=NULL或p-&gt;next!=NULL,而循环
+单链表的判别条件为p!=L或p-&gt;next!=L。
+在某些情况下，若在循环链表中设立尾指针而不设头指针见图2.18(a), 可使一些操
+作简化。例如，将两个线性表合并成一个表时，仅需将第一个表的尾指针指向第二个表的第</p>
+<p>一个结点，第二个表的尾指针指向第一个表的头结点，然后释放第二个表的头结点。 当线性
+表以循环链表作存储结构时，这个操作仅需改变两个指针值即可， 主要语句段
+如下：</p>
+<pre><code class="language-c">p = B-&gt;next-&gt;next; 
+B-&gt;next = A-&gt;next; 
+A-&gt;next = p; 
+</code></pre>
+<p>上述操作的时间复杂度为0(1)</p>
+<h2 id="_19">双向链表</h2>
+<p>以上讨论的链式存储结构的结点中只有一个指示直接后继的指针域， 由此，从某个结点出发
+只能顺指针向后寻查其他结点。 若要寻查结点的直接前驱，则必须从表头指针出发。 换句话说，
+在单链表中，查找直接后继结点的执行时间为0(1), 而查找直接前驱的执行时间为O(n)。 为克服
+单链表这种单向性的缺点，可利用双向链表 (DoubleLinked List)。
+顾名思义， 在双向链表的结点中有两个指针域，一个指向直接后继，另一个指向直接前驱，
+结点结构如图2.19(a) 所示， 在C语言中可描述如下：</p>
+<pre><code class="language-c">typedef struct DuLNode
+{ 
+ElemType data; 
+struct DuLNode *prior; 
+Struct DuLNode *next; 
+}DuLNode,*DuLinkList; 
+</code></pre>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../../about.html" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../../about.html" class="btn btn-xs btn-link">
+        ABOUT
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../../article/hello/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../../article/hello/" class="btn btn-xs btn-link">
+        Hi
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content"><p>Copyright &copy; 2023 N0b0dy</p>
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
