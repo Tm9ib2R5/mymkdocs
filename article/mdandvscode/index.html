@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>MD - N0b0dy's blog</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "MD\u0026amp;\u0026amp;VSCODE", url: "#_top", children: [
+              {title: "\u4e00\u3001\u6982\u8ff0", url: "#_1" },
+              {title: "\u4e8c\u3001\u63d2\u4ef6\u5b89\u88c5\u548c\u914d\u7f6e", url: "#_2" },
+              {title: "\u4e09\u3001MarkDown\u57fa\u672c\u8bed\u6cd5", url: "#markdown" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../../data_structures/seqlist_singlelist/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../../data_structures/seqlist_singlelist/" class="btn btn-xs btn-link">
+        List
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../hello/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../hello/" class="btn btn-xs btn-link">
+        Hi
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="mdvscode">MD&amp;&amp;VSCODE</h1>
+<p>[[TOC]]- <a href="#mdvscode">MD\&amp;\&amp;VSCODE</a>
+- <a href="#mdvscode">MD\&amp;\&amp;VSCODE</a>
+  - <a href="#一概述">一、概述</a>
+  - <a href="#二插件安装和配置">二、插件安装和配置</a>
+    - <a href="#21-markdown-all-in-one">2.1 markdown-all-in-one</a>
+    - <a href="#22-markdown-toc">2.2 markdown toc</a>
+    - <a href="#23-markdownmath">2.3 markdown+math</a>
+    - <a href="#24-markdown-pdf">2.4 markdown pdf</a>
+    - <a href="#25-markdown-preview-enhanced">2.5 Markdown Preview Enhanced</a>
+  - <a href="#三markdown基本语法">三、MarkDown基本语法</a>
+    - <a href="#代码块">代码块</a>
+    - <a href="#插入链接待定">插入链接（待定。。。）</a>
+    - <a href="#插入图片">插入图片</a>
+    - <a href="#插入图片带有链接">插入图片带有链接</a>
+    - <a href="#插入视频">插入视频</a>
+    - <a href="#序列">序列</a>
+    - <a href="#内联样式">内联样式</a>
+    - <a href="#语义标签">语义标签</a>
+    - <a href="#公式">公式</a>
+    - <a href="#锚点">锚点</a>
+    - <a href="#自动邮箱链接">自动邮箱链接</a>
+    - <a href="#流程图">流程图</a></p>
+<h2 id="_1">一、概述</h2>
+<p>最近迷上了MarkDown，所以进行了学习，
+因为我个人十分喜欢VS Code，而且个人以为配置好后的VS Code不逊色于任何一款MarkDown编辑器，当然，如果觉得自己配置太麻烦的话，也可以直接使用Typora这款编辑器，有朋友在用，实时在编辑区预览，效果很不错。</p>
+<h2 id="_2">二、插件安装和配置</h2>
+<p>安装和配置插件的步骤：
+-安装： Ctrl+Shift+P打开控制命令行，然后如下输入就可以打开插件市场，输入markdown就可以看到所有相关插件:</p>
+<p>-配置：Ctrl+Shift+P打开控制命令行，然后如下输入就可以更改插件配置
+第一个选项是json格式的配置文件，第二个选项是使用UI界面打开配置文件，第三个是打开默认的配置文件，所有的配置都在里面，可以复制，但是不可编辑，复制到第一个选项里面即可进行配置，这里打开第一个选项Open Settings(JSON)</p>
+<h3 id="21-markdown-all-in-one">2.1 markdown-all-in-one</h3>
+<p>简介：所有你需要写Markdown要用到的（键盘快捷方式，目录，自动预览等）
+配置：这个需要配置的不多，基本上默认就好了</p>
+<h3 id="22-markdown-toc">2.2 markdown toc</h3>
+<p>简介：这个插件是用来生成目录
+配置：
+markdown-toc.depthFrom: 生成目录的标题最低级别，默认h1
+markdown-toc.depthTo: 生成目录的标题最高级别，默认h6
+markdown-toc.insertAnchor: 自动插入链接地址，默认false
+markdown-toc.withLinks: 自动插入链接，默认true
+markdown-toc.updateOnSave: 自动更新</p>
+<h3 id="23-markdownmath">2.3 markdown+math</h3>
+<p>简介：此扩展使用$ 分隔符支持内联数学公式，所有的公式必须在’ $̲ $ '或者…$$之中。
+配置：不需要配置</p>
+<h3 id="24-markdown-pdf">2.4 markdown pdf</h3>
+<p>简介：markdown是不支持pdf输出，需要借助其他办法输出，使用该插件就可以。
+该插件还支持导出为以下格式，只需要在md文件中右键鼠标就可以弹出选项</p>
+<p>配置：这个插件共有34条配置，大多数默认就好，以下是常用配置：
+markdown-pdf.type: 设置默认导出格式，也就是上图中的第一个选项，默认是pdf
+markdown-pdf.outputDirectory: 导出路径
+markdown-pdf.outputDirectoryRelativePathFile: 导出相对路径
+markdown-pdf.styles: 导出的pdf文件的格式，可以使用本地的绝对路径自定义，也可以使用网上的
+markdown-pdf.displayHeaderFooter: 是否显示页眉页脚，默认是true，我改为false，因为默认页眉页脚很丑，
+当然也可以使用markdown-pdf.headerTemplate和markdown-pdf.footerTemplate自定义</p>
+<h3 id="25-markdown-preview-enhanced">2.5 Markdown Preview Enhanced</h3>
+<p>在预览窗口右键点击
+简介：实时预览的插件，很好用，也可以结合上图中的其他程序导出为其他格式，推荐使用pandoc可以导出为word文件、pdf 、html等多种格式，但是实测导出效果并不理想，可能是姿势不对吧，没有深究。
+配置：
+"markdown-preview-enhanced.enableTypographer": 是否可以显示流程图，默认false，我调成true，
+但是建议画流程图还是使用其他软件，插入图片，另外，即便可以在预览窗口看到流程图，
+使用markdown pdf导出为PDF的时候也不能显示。。。。。只能看看。。。。
+"markdown-preview-enhanced.previewTheme":设置预览主题，只能设置它给定的几个主题，
+默认是 "github-light.css", 但是人的智慧是无穷的使用自己下载的或者自定义的CSS的办法，</p>
+<p>解决VS Code下Markdown Preview Enhanced不能使用自定义css的问题</p>
+<h2 id="markdown">三、MarkDown基本语法</h2>
+<p>vs code 使用 Markdown 编写文档</p>
+<p>直接使用 HTML 标签，可以设置文字居中，字体颜色等样色(HTML 语法)
+代码:
+VS Code 使用 Markdown 编写文档
+标题
+注：# 后面保持空格（和使用 h1/h2 标签功能类似）
+代码:</p>
+<pre><code class="language-md"># h1
+## h2
+</code></pre>
+<p>TOC(根据标题生成目录)</p>
+<p>代码1(单行式)：</p>
+<pre><code class="language-md">hello world!
+</code></pre>
+<p>代码2(多行式)：</p>
+<pre><code class="language-md">hello world! 输入完之后按两次空格键再按一次Enter键即可
+hello world! 输入完之后按两次空格键再按一次Enter键即可
+hello world! 输入完之后按两次空格键再按一次Enter键即可
+</code></pre>
+<p>代码3(多层嵌套)：</p>
+<pre><code class="language-md">aaaaaaaaa
+
+bbbbbbbbb
+
+cccccccccc
+</code></pre>
+<p>行内标记(用 标记代码块将变成一行) 代码：标记之外hello world``标记之外</p>
+<h3 id="_3">代码块</h3>
+<p>用代码进行包裹
+代码：</p>
+<pre><code class="language-html">&lt;div&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>代码：</p>
+<pre><code class="language-javascript">var num = 0;
+for (var i = 0; i &lt; 5; i++) {
+    num+=i;
+}
+console.log(num);
+</code></pre>
+<h3 id="_4">插入链接（待定。。。）</h3>
+<p>代码：</p>
+<pre><code class="language-html">[百度 1](http://www.baidu.com/ '百度一下')
+</code></pre>
+<h3 id="_5">插入图片</h3>
+<p>代码:</p>
+<pre><code class="language-html">![](./01.jpg '描述')
+</code></pre>
+<h3 id="_6">插入图片带有链接</h3>
+<p>代码:</p>
+<pre><code class="language-html">[![](.//img/01.png '百度')](http://www.baidu.com)
+</code></pre>
+<h3 id="_7">插入视频</h3>
+<p>注：Markdown 语法是不支持直接插入视频的
+普遍的做法是 插入 HTML 的 iframe 框架，通过网站自带的分享功能获取，如果没有可以尝试第二种方法
+第二是伪造播放界面，实质是插入视频图片，然后通过点击跳转到相关页面</p>
+<p>代码：</p>
+<pre><code class="language-html">&lt;iframe height=498 width=510 src='http://player.youku.com/embed/XMjgzNzM0NTYxNg==' frameborder=0 'allowfullscreen'&gt;&lt;/iframe&gt;
+</code></pre>
+<h3 id="_8">序列</h3>
+<p>代码1(有序)：
+one
+two
+three
+代码2(无序)：
+* one
+* two
+* three</p>
+<p>代码3(序表嵌套)：
+1. one
+1. one-1
+2. two-2
+2. two
+* two-1
+* two-2
+列表</p>
+<pre><code>列表
+使用 - 或 * 或 + 加空格来创建无序列表。
+
+使用数字加 . 后加空格来创建有序列表。
+
+使用 - [ ] 后加空格来创建待办列表，使用 - [x] 进行打勾（字母 x 或 X）。
+
+（CSDN 版）自定义列表：首行写标题，第二行在需要缩进处添加 : 和空格。
+</code></pre>
+<p>代码4(序表嵌套代码块)
+注：换行+两个Tab</p>
+<ul>
+<li>
+<p>one</p>
+<p>var a = 10;     // 与上行保持空行并 递进缩进</p>
+</li>
+</ul>
+<p>任务列表(类似于多选框)
+代码：
+- [ ] 选项一
+- [x] 选项二
+表格
+注： : 代表对齐方式
+代码1：
+    | a  |  b | c  |
+    |:--:|:-- | --:|    #这句代码只能写在第二行
+    |  居中 |  左对齐 |  右对齐 |</p>
+<p>代码2(简约写法)：</p>
+<pre><code>a  |  b  | c  
+:---:|:------------ |--:
+居中 |  左对齐 |  右对齐
+</code></pre>
+<h3 id="_9">内联样式</h3>
+<pre><code>
+文本样式
+使用 * 或 _ 包围的文本会变为斜体。
+
+使用 ** 或 __ 包围的文本会被加粗。
+
+使用 *** 或 ___ 包围的文本会变为粗斜体。
+
+使用 ~~ 包围的文本会被横线删除。
+
+（CSDN 版）使用 == 包围的文本会被高亮。
+（Github 版）使用 &lt;mark&gt; 和 &lt;/mark&gt; 包围的文本会被高亮。
+
+在 &gt; 后的文本会被引用。
+
+（CSDN 版）使用 ~ 包围的文本会变为下标。
+（Github 版）使用 &lt;sub&gt; 和 &lt;/sub&gt; 包围的文本会变为下标。
+
+（CSDN 版）使用 ^ 包围的文本会变为上标。
+（Github 版）使用 &lt;sup&gt; 和 &lt;/sup&gt; 包围的文本会变为上标。
+
+使用 &lt;u&gt; 和 &lt;/u&gt; 包围的文本会出现下划线。
+
+输入 *** 后回车，即可添加分隔线。
+
+编写不被渲染输出的内容：&lt;!--文本--&gt;
+
+在文本前使用 &amp;emsp;&amp;emsp; 代表在文本前按下一次 Tab 键。
+
+若需要空一行，按下回车键即可；若需要空多行，则需要在每一行空行处添加 &amp;emsp;&amp;emsp; 。
+
+若需要添加在 Markdown 中具有特殊意义的字符，在该符号前添加 \ 即可。
+</code></pre>
+<h3 id="_10">语义标签</h3>
+<pre><code>        &lt;i&gt;斜体&lt;/i&gt;  
+        &lt;b&gt;加粗&lt;/b&gt;  
+        &lt;em&gt;强调&lt;/em&gt;  
+        &lt;u&gt;下划线&lt;/u&gt;   
+        &lt;del&gt;删除&lt;/del&gt;  
+        Z&lt;sup&gt;a&lt;/sup&gt;  
+        Z&lt;sub&gt;a&lt;/sub&gt;  
+        &lt;kbd&gt;Ctrl&lt;/kbd&gt;
+</code></pre>
+<h3 id="_11">公式</h3>
+<p>代码：
+            $$ x \href{why-equal.html}{=} y^2 + 1 $$
+            $ x = {-b \pm \sqrt{b^2-4ac} \over 2a}. $</p>
+<p>脚注
+代码：</p>
+<pre><code>        Markdown[^1]
+        [^1]: Markdown是一种纯文本标记语言        // 在文章最后面显示脚注
+</code></pre>
+<h3 id="_12">锚点</h3>
+<p>代码：
+公式标题锚点</p>
+<pre><code>#### [任务列表(类似于多选框)]  {#1}    // 方括号后保持空格
+</code></pre>
+<p>演示：</p>
+<p>定义型列表
+注：解释型定义
+代码：
+            Markdown <br />
+            : 轻量级文本标记语言，可以转换成html，pdf等格式  //  开头一个<code>:</code> + <code>Tab</code> 或 四个空格</p>
+<h3 id="_13">自动邮箱链接</h3>
+<p>代码：</p>
+<pre><code>        &lt;xxx@outlook.com&gt;
+</code></pre>
+<h3 id="_14">流程图</h3>
+<p>代码：</p>
+<pre><code class="language-mermaid">graph LR
+A--&gt;B
+</code></pre>
+<pre><code class="language-mermaid">sequenceDiagram
+A-&gt;&gt;B: How are you?
+B-&gt;&gt;A: Great!
+</code></pre>
+<pre><code class="language-mermaid">gantt
+dateFormat YYYY-MM-DD
+section S1
+T1: 2014-01-01, 9d
+section S2
+T2: 2014-01-11, 9d
+section S3
+T3: 2014-01-02, 9d
+</code></pre>
+<p>代码：</p>
+<pre><code class="language-mermaid">sequenceDiagram
+起床-&gt;&gt;吃饭: 稀饭油条
+吃饭-&gt;&gt;上班: 不要迟到了
+上班-&gt;&gt;午餐: 吃撑了
+上班-&gt;&gt;下班:
+Note right of 下班: 下班了
+下班-&gt;&gt;回家:
+Note right of 回家: 到家了
+回家--&gt;&gt;起床:
+Note left of 起床: 新的一天
+</code></pre>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../../data_structures/seqlist_singlelist/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../../data_structures/seqlist_singlelist/" class="btn btn-xs btn-link">
+        List
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../hello/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../hello/" class="btn btn-xs btn-link">
+        Hi
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content"><p>Copyright &copy; 2025 N0b0dy</p>
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

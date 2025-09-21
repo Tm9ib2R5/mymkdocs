@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>EXERCISE - N0b0dy's blog</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Homework- Homework", url: "#_top", children: [
+              {title: "\u7f16\u5199\u5b9e\u73b0\u5bf9\u987a\u5e8f\u8868\u7684\u9006\u7f6e", url: "#_1" },
+              {title: "\u7f16\u5199\u7a0b\u5e8f\u5b9e\u73b0\u5c06\u6570\u636e\u57df\u4e2d\u6700\u5c0f\u5143\u7d20\u653e\u7f6e\u5728\u5355\u94fe\u8868\u6700\u524d\u9762", url: "#_2" },
+              {title: "\u7f16\u5199\u7a0b\u5e8f\u5b9e\u73b0\u5bf9\u5355\u94fe\u8868\u7684\u9006\u7f6e", url: "#_3" },
+              {title: "\u7f16\u5199\u7a0b\u5e8f\u5c06\u6709\u5e8f\u9012\u589e\u7684\u5355\u94fe\u8868\u4e2d\u6570\u503c\u5728a\u5230b(a\u0026lt;=b)\u589e\u52a0\u7684\u5143\u7d20\u5220\u9664", url: "#abab" },
+              {title: "\u7f16\u5199\u7a0b\u5e8f\u5220\u9664\u5355\u94fe\u8868\u4e2d\u6240\u6709\u5173\u952e\u5b57\u503c\u4e3ax\u7684\u5143\u7d20", url: "#x" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../../about.html" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../../about.html" class="btn btn-xs btn-link">
+        ABOUT
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../seqlist_singlelist/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../seqlist_singlelist/" class="btn btn-xs btn-link">
+        List
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="homework-homework">Homework- <a href="#homework">Homework</a></h1>
+<ul>
+<li><a href="#homework--homework">Homework- Homework</a></li>
+<li><a href="#编写实现对顺序表的逆置">编写实现对顺序表的逆置</a></li>
+<li><a href="#编写程序实现将数据域中最小元素放置在单链表最前面">编写程序实现将数据域中最小元素放置在单链表最前面</a></li>
+<li><a href="#编写程序实现对单链表的逆置">编写程序实现对单链表的逆置</a></li>
+<li><a href="#编写程序将有序递增的单链表中数值在a到bab增加的元素删除">编写程序将有序递增的单链表中数值在a到b(a\&lt;=b)增加的元素删除</a></li>
+<li><a href="#编写程序删除单链表中所有关键字值为x的元素">编写程序删除单链表中所有关键字值为x的元素</a></li>
+</ul>
+<h2 id="_1">编写实现对顺序表的逆置</h2>
+<pre><code class="language-C">void invert_seq(SeqList *L)
+{
+    if (!L || L-&gt;n &lt; 2) return;
+    for (int i = 0; i &lt; L-&gt;n / 2; ++i)   // 整除
+    {
+        ElemType tmp       = L-&gt;elem[i];
+        L-&gt;elem[i]         = L-&gt;elem[L-&gt;n - 1 - i];
+        L-&gt;elem[L-&gt;n - 1 - i] = tmp;
+    }
+}
+</code></pre>
+<h2 id="_2">编写程序实现将数据域中最小元素放置在单链表最前面</h2>
+<pre><code class="language-C">Status swap(singlelist*L)
+{
+    Node*p,*pFront,*min,*minFront;
+    Elemtype temp;
+    if(!L-&gt;first)
+    {
+        return 0;
+    }
+    p=L-&gt;first-&gt;link;
+    pFront=NULL;
+    min=L-&gt;first;
+    minFront=NULL;
+    while(p)
+int move_min_to_front(SingleList *L)
+{
+    if (!L || !L-&gt;first) return 0;
+    Node *prev = NULL, *minprev = NULL;
+    Node *p = L-&gt;first, *minp = L-&gt;first;
+
+    /* 找最小结点 */
+    while (p-&gt;link) {
+        if (p-&gt;link-&gt;element &lt; minp-&gt;element) {
+            minp    = p-&gt;link;
+            minprev = p;
+        }
+        p = p-&gt;link;
+    }
+    if (minp == L-&gt;first) return 1;      // 已在头部
+
+    /* 删除并头插 */
+    minprev-&gt;link = minp-&gt;link;
+    minp-&gt;link    = L-&gt;first;
+    L-&gt;first      = minp;
+    return 1;
+}
+</code></pre>
+<h2 id="_3">编写程序实现对单链表的逆置</h2>
+<pre><code class="language-C">void invert_list(SingleList *L)
+{
+    if (!L || !L-&gt;first) return;
+    Node *p = L-&gt;first;   // 旧链头
+    L-&gt;first = NULL;      // 新链头
+
+    while (p) {
+        Node *next = p-&gt;link; // 保存后继
+        p-&gt;link = L-&gt;first;   // 头插
+        L-&gt;first = p;
+        p = next;
+    }
+}
+
+</code></pre>
+<h2 id="abab">编写程序将有序递增的单链表中数值在a到b(a&lt;=b)增加的元素删除</h2>
+<pre><code class="language-C">int delete_range(SingleList *L, ElemType a, ElemType b)
+{
+    if (!L || !L-&gt;first || a &gt; b) return 0;
+
+    Node *prev = NULL, *p = L-&gt;first;
+    while (p &amp;&amp; p-&gt;element &lt;= b) {
+        if (p-&gt;element &gt;= a) {          // 命中，删除
+            Node *tmp = p;
+            if (!prev) {                // 删头结点
+                L-&gt;first = p-&gt;link;
+                p = L-&gt;first;
+            } else {
+                prev-&gt;link = p-&gt;link;
+                p = prev-&gt;link;
+            }
+            free(tmp);
+            --L-&gt;n;
+        } else {                        // 继续扫描
+            prev = p;
+            p    = p-&gt;link;
+        }
+    }
+    return 1;
+}
+</code></pre>
+<h2 id="x">编写程序删除单链表中所有关键字值为x的元素</h2>
+<pre><code class="language-C">int delete_all_x(SingleList *L, ElemType x)
+{
+    if (!L || !L-&gt;first) return 0;
+
+    Node *prev = NULL, *p = L-&gt;first;
+    while (p) {
+        if (p-&gt;element == x) {
+            Node *tmp = p;
+            if (!prev) {                // 删头
+                L-&gt;first = p-&gt;link;
+                p = L-&gt;first;
+            } else {
+                prev-&gt;link = p-&gt;link;
+                p = prev-&gt;link;
+            }
+            free(tmp);
+            --L-&gt;n;
+        } else {
+            prev = p;
+            p    = p-&gt;link;
+        }
+    }
+    return 1;
+}- [Homework](#homework)
+  - [编写实现对顺序表的逆置](#编写实现对顺序表的逆置)
+  - [编写程序实现将数据域中最小元素放置在单链表最前面](#编写程序实现将数据域中最小元素放置在单链表最前面)
+  - [编写程序实现对单链表的逆置](#编写程序实现对单链表的逆置)
+  - [编写程序将有序递增的单链表中数值在a到b(a\&lt;=b)增加的元素删除](#编写程序将有序递增的单链表中数值在a到bab增加的元素删除)
+  - [编写程序删除单链表中所有关键字值为x的元素](#编写程序删除单链表中所有关键字值为x的元素)
+
+</code></pre>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../../about.html" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../../about.html" class="btn btn-xs btn-link">
+        ABOUT
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../seqlist_singlelist/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../seqlist_singlelist/" class="btn btn-xs btn-link">
+        List
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content"><p>Copyright &copy; 2025 N0b0dy</p>
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
