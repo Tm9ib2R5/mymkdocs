@@ -107,39 +107,35 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 }
 </code></pre>
 <h2 id="_2">编写程序实现将数据域中最小元素放置在单链表最前面</h2>
-<pre><code class="language-C">Status swap(singlelist*L)
+<pre><code class="language-C">Status swap(SingleList *L)          /* 假设 Status 就是 int */
 {
-    Node*p,*pFront,*min,*minFront;
-    Elemtype temp;
-    if(!L-&gt;first)
-    {
-        return 0;
-    }
-    p=L-&gt;first-&gt;link;
-    pFront=NULL;
-    min=L-&gt;first;
-    minFront=NULL;
-    while(p)
-int move_min_to_front(SingleList *L)
-{
-    if (!L || !L-&gt;first) return 0;
-    Node *prev = NULL, *minprev = NULL;
-    Node *p = L-&gt;first, *minp = L-&gt;first;
+    Node *p, *pFront, *min, *minFront;
+    if (!L || !L-&gt;first) return 0;  /* 空表 */
 
-    /* 找最小结点 */
-    while (p-&gt;link) {
-        if (p-&gt;link-&gt;element &lt; minp-&gt;element) {
-            minp    = p-&gt;link;
-            minprev = p;
+    pFront = NULL;
+    p      = L-&gt;first-&gt;link;
+    min      = L-&gt;first;
+    minFront = NULL;
+
+    /* 1. 找最小结点 */
+    while (p) {
+        if (p-&gt;element &lt; min-&gt;element) {
+            min      = p;
+            minFront = pFront;
         }
-        p = p-&gt;link;
+        pFront = p;
+        p      = p-&gt;link;
     }
-    if (minp == L-&gt;first) return 1;      // 已在头部
 
-    /* 删除并头插 */
-    minprev-&gt;link = minp-&gt;link;
-    minp-&gt;link    = L-&gt;first;
-    L-&gt;first      = minp;
+    /* 2. 如果最小结点已在头部，直接返回 */
+    if (min == L-&gt;first) return 1;
+
+    /* 3. 把 min 从链中摘下 */
+    minFront-&gt;link = min-&gt;link;
+
+    /* 4. 头插 */
+    min-&gt;link  = L-&gt;first;
+    L-&gt;first   = min;
     return 1;
 }
 </code></pre>
