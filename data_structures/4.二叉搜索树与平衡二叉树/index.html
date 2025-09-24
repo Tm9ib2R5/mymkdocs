@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>二叉搜索树 Binary Search Tree - N0b0dy's blog</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "\u4e8c\u53c9\u641c\u7d22\u6811 Binary Search Tree", url: "#_top", children: [
+              {title: "\u67e5\u627e", url: "#_1" },
+              {title: "\u8fd4\u56de\u6700\u5927\u503c/\u6700\u5c0f\u503c", url: "#_2" },
+              {title: "\u63d2\u5165", url: "#_3" },
+              {title: "\u5220\u9664", url: "#_4" },
+          ]},
+          {title: "\u5e73\u8861\u4e8c\u53c9\u6811 Balanced Binary Tree", url: "#balanced-binary-tree", children: [
+              {title: "\u8c03\u6574", url: "#_5" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+
+    <h1 id="binary-search-tree">二叉搜索树 Binary Search Tree</h1>
+<ol>
+<li>非空左子树所有键值小于根节点的键值</li>
+<li>非空右子树所有键值大于根节点的键值</li>
+<li>左右子树都是二叉搜索树</li>
+</ol>
+<p>操作的函数:<br />
+1. Position Find( ElementType X, BinTree BST ):从二叉搜索树BST 中查找元素X，返回其所在结点的地址;
+2. Position FindMin( BinTree BST ):从二叉搜索树BST中查找并返回 最小元素所在结点的地址;
+3. Position FindMax( BinTree BST ) :从二叉搜索树BST中查找并返回 最大元素所在结点的地址。
+4. BinTree Insert( ElementType X, BinTree BST ) 插入
+5. BinTree Delete( ElementType X, BinTree BST ) 删除</p>
+<h2 id="_1">查找</h2>
+<p>递归实现  </p>
+<pre><code class="language-c">Position Find( ElementType X, BinTree BST ) {
+    if( !BST ) return NULL; /*查找失败*/ 
+    if( X &gt; BST-&gt;Data )
+        return Find( X, BST-&gt;Right ); /*在右子树中继续查找*/
+    Else if( X &lt; BST-&gt;Data )
+        return Find( X, BST-&gt;Left ); /*在左子树中继续查找*/
+    else 
+        /* X == BST-&gt;Data */
+        return BST; /*查找成功，返回结点的找到结点的地址*/
+}
+</code></pre>
+<p>迭代实现  </p>
+<pre><code class="language-c">Position IterFind( ElementType X, BinTree BST ) {
+    while( BST ) 
+    {
+        if( X &gt; BST-&gt;Data )
+            BST = BST-&gt;Right; /*向右子树中移动，继续查找*/ 
+        else if( X &lt; BST-&gt;Data )
+            BST = BST-&gt;Left; /*向左子树中移动，继续查找*/ 
+        else /* X == BST-&gt;Data */
+            return BST; /*查找成功，返回结点的找到结点的地址*/ 
+    }
+        return NULL; /*查找失败*/
+} 
+</code></pre>
+<h2 id="_2">返回最大值/最小值</h2>
+<p>最大元素一定在最右分支的端点上</p>
+<pre><code class="language-c">Position FindMax( BinTree BST )
+{
+    if(BST ) // 结点不空
+    {
+        while( BST-&gt;Right ) // 右儿子不空
+            BST = BST-&gt;Right; // 则往右
+    }
+    return BST;
+}
+</code></pre>
+<p>最小元素在最左段上<br />
+递归法:  </p>
+<pre><code class="language-c"> Position FindMin( BinTree BST )
+{
+    if( !BST ) return NULL;/*空的二叉搜索树，返回NULL*/
+    else if( !BST-&gt;Left )
+        return BST; /*找到最左叶结点并返回*/
+    else 
+        return FindMin( BST-&gt;Left ); /*沿左分支继续查找*/
+</code></pre>
+<h2 id="_3">插入</h2>
+<pre><code class="language-c">BinTree Insert( ElementType X, BinTree BST ) {
+    if( !BST ) /*若原树为空，生成并返回一个结点的二叉搜索树*/
+    { 
+        BST = malloc(sizeof(struct TreeNode)); 
+        BST-&gt;Data = X;            
+        BST-&gt;Left = BST-&gt;Right = NULL;
+    }
+    else /*开始找要插入元素的位置*/ 
+    {
+        if( X &lt; BST-&gt;Data )
+            BST-&gt;Left = Insert( X, BST-&gt;Left); /*递归插入左子树*/
+        else if( X &gt; BST-&gt;Data )
+            BST-&gt;Right = Insert( X, BST-&gt;Right); /*递归插入右子树*/
+    /* else X已经存在，什么都不做 */
+    }
+    return BST;
+}
+</code></pre>
+<h2 id="_4">删除</h2>
+<ol>
+<li>删除的是叶结点</li>
+<li>删除的只有一个孩子的结点</li>
+<li>要删除的结点右左右两棵子树,则:<ul>
+<li>右子树最小元素替代</li>
+<li>左子树最大元素替代</li>
+</ul>
+</li>
+</ol>
+<p>实现  </p>
+<pre><code class="language-c">BinTree Delete( BinTree BST, ElementType X ) 
+{ 
+    Position Tmp; 
+
+    if( !BST ) 
+        printf(&quot;要删除的元素未找到&quot;); 
+    else {
+        if( X &lt; BST-&gt;Data ) 
+            BST-&gt;Left = Delete( BST-&gt;Left, X );   /* 从左子树递归删除 */
+        else if( X &gt; BST-&gt;Data ) 
+            BST-&gt;Right = Delete( BST-&gt;Right, X ); /* 从右子树递归删除 */
+        else { /* BST就是要删除的结点 */
+            /* 如果被删除结点有左右两个子结点 */ 
+            if( BST-&gt;Left &amp;&amp; BST-&gt;Right ) {
+                /* 从右子树中找最小的元素填充删除结点 */
+                Tmp = FindMin( BST-&gt;Right );
+                BST-&gt;Data = Tmp-&gt;Data;
+                /* 从右子树中删除最小元素 */
+                BST-&gt;Right = Delete( BST-&gt;Right, BST-&gt;Data );
+            }
+            else { /* 被删除结点有一个或无子结点 */
+                Tmp = BST; 
+                if( !BST-&gt;Left )       /* 只有右孩子或无子结点 */
+                    BST = BST-&gt;Right; 
+                else                   /* 只有左孩子 */
+                    BST = BST-&gt;Left;
+                free( Tmp );
+            }
+        }
+    }
+    return BST;
+}
+</code></pre>
+<h1 id="balanced-binary-tree">平衡二叉树  Balanced Binary Tree</h1>
+<p>平均查找长度ASL<br />
+平衡因子(Balance Factor，简称BF): BF(T) = hL-hR， <br />
+|BF(T)| &lt;= 1<br />
+平衡二叉树的高度<br />
+n_h: 高度为h的平衡二叉树最少结点数<br />
+n_h = n_h-1 + n_h-2 + 1<br />
+    = F_h+2 - 1<br />
+给定结点数为 n的AVL树的 最大高度为O(log2n)!</p>
+<h2 id="_5">调整</h2>
+<p>平衡二叉树是搜索树<br />
+右单旋<br />
+麻烦结点在发现者(被破坏者)的右子树的右子树上,因而RR插入,需要RR旋转<br />
+左单旋<br />
+麻烦结点在发现者(被破坏者)的左子树的左子树上,因而LL旋转<br />
+左右旋转<br />
+麻烦结点在发现者(被破坏者)的左子树的右子树上, LR旋转</p>
+<p>习题: 是否同一颗二叉搜索树<br />
+1. 根据两个序列分别建树，再判别树是否一样
+2. 不建树的判别方法<br />
+3. 建一棵树，再判别其他序列是否与该树一致</p>
+
+  <br>
+    
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content"><p>Copyright &copy; 2025 N0b0dy</p>
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

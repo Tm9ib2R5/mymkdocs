@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Queue - N0b0dy's blog</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "\u961f\u5217 Queue", url: "#_top", children: [
+              {title: "\u961f\u5217\u7684\u987a\u5e8f\u5b58\u50a8\u5b9e\u73b0", url: "#_1" },
+              {title: "\u961f\u5217\u7684\u94fe\u5f0f\u5b58\u50a8\u5b9e\u73b0", url: "#_2" },
+              {title: "\u5e94\u7528: \u591a\u9879\u5f0f\u52a0\u6cd5\u8fd0\u7b97", url: "#_3" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../../about.html" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../../about.html" class="btn btn-xs btn-link">
+        ABOUT
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../Stack/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../Stack/" class="btn btn-xs btn-link">
+        Stack
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="queue">队列 Queue</h1>
+<p>FIFO
+操作集:长度为MaxSize的队列Q  Queue，队列元素item  ElementType
+1. Queue CreatQueue( int MaxSize ):生成长度为MaxSize的空队列;
+2. int IsFullQ( Queue Q, int MaxSize ):判断队列Q是否已满;
+3. void AddQ( Queue Q, ElementType item ): 将数据元素item插入队列Q中; 
+4. int IsEmptyQ( Queue Q ): 判断队列Q是否为空;
+5. ElementType DeleteQ( Queue Q ):将队头数据元素从队列中删除并返回。  </p>
+<h2 id="_1">队列的顺序存储实现</h2>
+<p>一个一维数组,队列头元素位置的变量front, 队列为元素位置的变量rear, 而堆栈由一个一位数组加上一个top.
+队列的结构</p>
+<pre><code class="language-c">#define MaxSize &lt;储存数据元素的最大个数&gt; 
+struct QNode {
+    ElementType Data[ MaxSize ]; 
+    int rear;
+    int front;
+};
+typedef struct QNode *Queue;
+</code></pre>
+<p>循环队列
+当front == rear时候, 空<br />
+rear指向这个队列实际的最后一个元素的位置,front是第一个元素的前一个. 加入一个元素的时候rear + 1, 删除一个元素的时候front + 1<br />
+使用额外标记 size或者tag<br />
+仅使用n-1个数组空间<br />
+* 创建队列 </p>
+<pre><code class="language-c">Queue CreateQueue(int Maxsize)
+{
+    Queue Q = (Queue)malloc(sizeof(struct QNode));
+    Q-&gt;Data = (ElementType)malloc(Maxsize * sizeof(ElementType));
+    Q-&gt;front = Q-&gt;rear = 0;
+    Q-&gt;Maxsize = Maxsize;
+    return Q;
+}
+</code></pre>
+<ul>
+<li>入队列
+用求余数函数,实现循环队列 例如 (5+1)%6 = 0, 放在第0位</li>
+</ul>
+<pre><code class="language-c">void AddQ( Queue PtrQ, ElementType item) {
+    if ( (PtrQ-&gt;rear+1) % MaxSize == PtrQ-&gt;front ) // front rear相邻
+    { 
+        printf(“队列满”);
+        return;
+    }
+    PtrQ-&gt;rear = (PtrQ-&gt;rear+1)% MaxSize; 
+    PtrQ-&gt;Data[PtrQ-&gt;rear] = item;
+}
+</code></pre>
+<ul>
+<li>出队</li>
+</ul>
+<pre><code class="language-c">ElementType DeleteQ ( Queue PtrQ ) // front和rear相同
+{
+    if ( PtrQ-&gt;front == PtrQ-&gt;rear ) 
+    { 
+        printf(“队列空”);
+        return ERROR;
+    } 
+    else 
+    {
+        PtrQ-&gt;front = (PtrQ-&gt;front+1)% MaxSize; // front往后移一位指向第一个元素
+        return PtrQ-&gt;Data[PtrQ-&gt;front];
+    } 
+}
+</code></pre>
+<h2 id="_2">队列的链式存储实现</h2>
+<p>链表结点结构</p>
+<pre><code class="language-c">struct Node{ 
+    ElementType Data; 
+    struct Node *Next;
+};
+</code></pre>
+<p>链表队列结构</p>
+<pre><code class="language-c">struct QNode
+{ 
+    struct Node *rear; /* 指向队尾结点 */
+    struct Node *front; /* 指向队头结点 */ 
+};
+typedef struct QNode *Queue;  
+Queue PtrQ;  // 包含front和rear的这个结构的指针PtrQ
+</code></pre>
+<ul>
+<li>出队</li>
+</ul>
+<pre><code class="language-c">ElementType DeleteQ ( Queue PtrQ ) 
+{ 
+    struct Node *FrontCell;
+    ElementType FrontElem;
+
+    if ( PtrQ-&gt;front == NULL) 
+    { 
+        printf(“队列空”); 
+        return ERROR;
+    }
+    FrontCell = PtrQ-&gt;front;  // 找到队列的头个元素
+    if ( PtrQ-&gt;front == PtrQ-&gt;rear) /* 若队列只有一个元素 */
+        PtrQ-&gt;front = PtrQ-&gt;rear = NULL; /* 删除后队列置为空 */ 
+    else
+        PtrQ-&gt;front = PtrQ-&gt;front-&gt;Next;
+    FrontElem = FrontCell-&gt;Data;
+    free( FrontCell ); /* 释放被删除结点空间 */ 
+    return FrontElem;
+}
+</code></pre>
+<h2 id="_3">应用: 多项式加法运算</h2>
+<p>算法思路:<br />
+两个指针P1和P2分别指向这两个多项式第一个结点，不断循环:
+* P1-&gt;expon==P2-&gt;expon相同: 系数相加，若结果不为0，则作为结果多项式对应项
+的系数。同时，P1和P2都分别指向下一项;
+* P1-&gt;expon&gt;P2-&gt;expon 这时p1大: 将P1的当前项存入结果多项式，并使P1指向下一项; <br />
+* P1-&gt;expon<P2->expon 这时p2大: 将P2的当前项存入结果多项式，并使P2指向下一项;
+* 当某一多项式处理完时，将另一个多项式的所有结点依次复制到结果多项式中去。  </p>
+<pre><code class="language-c">struct PolyNode //结构类型
+{
+    int coef; // 系数
+    int expon; // 指数 
+    struct PolyNode *link;  // 指向下一个节点的指针
+}
+typedef struct PolyNode *Polynomial; 
+Polynomial P1, P2;  // p1 p2都是这种结构的指针
+</code></pre>
+<p>实现</p>
+<pre><code class="language-c">Polynomial PolyAdd (Polynomial P1, Polynomial P2) 
+{
+    Polynomial front, rear, temp;  // 结构多项式的头 尾.
+    int sum;
+
+    // 临时空结点点作为结果多项式的表头, front rear都指向这个空间点
+    rear = (Polynomial) malloc(sizeof(struct PolyNode)); 
+    front = rear; /* 由front 记录结果多项式链表头结点 */
+
+    while ( P1 &amp;&amp; P2 ) /* 当两个多项式都有非零项(都不空)待处理时 */ 
+        switch ( Compare(P1-&gt;expon, P2-&gt;expon) ) // 比较两个指数
+        { 
+            case 1:  // p1大
+                // 系数和指素接到rear的后面
+                Attach( P1-&gt;coef, P1-&gt;expon, &amp;rear); 
+                P1 = P1-&gt;link;
+                break;
+            case -1: // p2大
+                Attach(P2-&gt;coef, P2-&gt;expon, &amp;rear); 
+                P2 = P2-&gt;link;
+                break;
+            case 0: //p1 = p2
+                sum = P1-&gt;coef + P2-&gt;coef;
+                // 判断sum不等于0
+                if ( sum ) Attach(sum, P1-&gt;expon, &amp;rear); 
+                P1 = P1-&gt;link;
+                P2 = P2-&gt;link;
+                break;
+        }
+    /* 将未处理完的另一个多项式的所有节点依次复制到结果多项式中去 */ 
+    // p1不空
+    for ( ; P1; P1 = P1-&gt;link ) 
+        Attach(P1-&gt;coef, P1-&gt;expon, &amp;rear);
+    // p2 不空
+    for ( ; P2; P2 = P2-&gt;link ) 
+        Attach(P2-&gt;coef, P2-&gt;expon, &amp;rear); 
+
+    // rear 指向结果多项式的最后一项,现在结束了,把link设为NULL
+    rear-&gt;link = NULL;
+    // 释放临时结点
+    temp = front;
+    front = front-&gt;link; /*令front指向结果多项式第一个非零项 */ 
+    free(temp); /* 释放临时空表头结点 */
+    return front;
+}
+</code></pre>
+<p>其中attach函数</p>
+<pre><code class="language-c">//传入系数和指数,以及最后一个结点的指针位置(指针的指针),于在本函数中需要改变当前结果表达式尾项指针的值,所以函数传递进来的是结点指针的地址，*pRear指向尾项
+ void Attach( int c, int e, Polynomial *pRear )
+{
+    Polynomial P;
+    /* 申请新结点 */ 
+    P =(Polynomial)malloc(sizeof(struct PolyNode)); 
+    P-&gt;coef = c; /* 对新结点赋值 */
+    P-&gt;expon = e;
+    P-&gt;link=NULL;
+    /* 将P指向的新结点插入到当前结果表达式尾项的后面 */ 
+    (*pRear)-&gt;link = P;
+    *pRear = P; /* 修改pRear值 */
+}
+</code></pre>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../../about.html" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../../about.html" class="btn btn-xs btn-link">
+        ABOUT
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../Stack/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../Stack/" class="btn btn-xs btn-link">
+        Stack
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content"><p>Copyright &copy; 2025 N0b0dy</p>
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

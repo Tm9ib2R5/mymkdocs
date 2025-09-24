@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Stack - N0b0dy's blog</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "\u5806\u6808 Stack", url: "#_top", children: [
+              {title: "\u6808\u7684\u987a\u5e8f\u5b58\u50a8\u5b9e\u73b0", url: "#_1" },
+              {title: "\u5806\u6808\u7684\u94fe\u5f0f\u5b58\u50a8\u5b9e", url: "#_2" },
+              {title: "\u5e94\u7528:\u8868\u8fbe\u5f0f\u6c42\u503c", url: "#_3" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../Queue/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../Queue/" class="btn btn-xs btn-link">
+        Queue
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../u2exercise/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../u2exercise/" class="btn btn-xs btn-link">
+        EXERCISE
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="stack">堆栈 Stack</h1>
+<p>具有一定操作约束的线性表，只在一端(栈顶，Top)做 插入、删除<br />
+操作集:长度为MaxSize的堆栈S 属于 Stack，堆栈元素item 属于 ElementType<br />
+1. Stack CreateStack( int MaxSize ): 生成空堆栈，其最大长度为MaxSize; 
+2. int IsFull( Stack S, int MaxSize ):判断堆栈S是否已满;
+3. void Push( Stack S, ElementType item ):将元素item压入堆栈;
+4. int IsEmpty ( Stack S ):判断堆栈S是否为空;
+5. ElementType Pop( Stack S ):删除并返回栈顶元素;</p>
+<h2 id="_1">栈的顺序存储实现</h2>
+<p>栈的顺序存储结构通常由一个一维数组和一个记录.栈顶元素位置的变量组成。</p>
+<pre><code class="language-c">#define MaxSize &lt;储存数据元素的最大个数&gt; 
+typedef struct SNode *Stack;  //结构指针
+struct SNode{
+    ElementType Data[MaxSize];  //数组
+    int Top; // 栈顶位置的数组下标
+};
+</code></pre>
+<ul>
+<li>入栈 Push  </li>
+</ul>
+<pre><code class="language-c">void Push( Stack PtrS, ElementType item )  // stack这个类型的指针
+{
+    if ( PtrS-&gt;Top == MaxSize-1 ) // 判断满不满。从 0 到 MaxSize-1
+    { 
+        printf(“堆栈满”); 
+        return;
+    }else 
+    {
+        PtrS-&gt;Data[++(PtrS-&gt;Top)] = item; 
+        /* 相当于：
+        (PtrS-&gt;Top)++;
+        PtrS-&gt;Data[PtrS-&gt;Top] = item;
+        */
+        return;
+    }
+}
+</code></pre>
+<ul>
+<li>出栈 Top  </li>
+</ul>
+<pre><code class="language-c">ElementType Pop( Stack PtrS ) 
+{
+    if ( PtrS-&gt;Top == -1 ) 
+    {
+         printf(“堆栈空”);
+         return ERROR;  //ERROR是ElementType的特殊值，标志错误
+    } else 
+    {
+        return ( PtrS-&gt;Data[(PtrS-&gt;Top)--] ); // return 出下标为top的这个值，同时Top-1
+    }
+}
+</code></pre>
+<p>[例] 请用一个数组实现两个堆栈，要求最大地利用数组空间，使 数组只要有空间入栈操作就可以成功。<br />
+【分析】 一种比较聪明的方法是使这两个栈分别从数组的两头开始 向中间生长;当两个栈的栈顶指针相遇时，表示两个栈都满了。  </p>
+<pre><code class="language-c">#define MaxSize &lt;存储数据元素的最大个数&gt; 
+
+struct DStack {
+    ElementType Data[MaxSize]; 
+    int Top1; /* 堆栈1的栈顶指针 */ 
+    int Top2; /* 堆栈2的栈顶指针 */
+} S;
+
+S.Top1 = -1; // 左边这个设为空
+S.Top2 = MaxSize; // 右边设为空（已经超出了MaxSize -1)
+</code></pre>
+<p>入栈</p>
+<pre><code class="language-c">void Push( struct DStack *PtrS, ElementType item, int Tag ) 
+{ /* Tag作为区分两个堆栈的标志，取值为1和2 */
+    if ( PtrS-&gt;Top2 – PtrS-&gt;Top1 == 1) /* 堆栈满, 两个指针相邻啦 */ 
+    { 
+        printf(“堆栈满”); 
+        return ;
+    }
+    if ( Tag == 1 ) /* 对第一个堆栈操作 */
+        PtrS-&gt;Data[++(PtrS-&gt;Top1)] = item;  // 放在第一个元素后面一位
+    else /* 对第二个堆栈操作 */ 
+        PtrS-&gt;Data[--(PtrS-&gt;Top2)] = item;  // 放在最后一个元素的前面一位
+}
+</code></pre>
+<p>出栈</p>
+<pre><code class="language-c">ElementType Pop( struct DStack *PtrS, int Tag ) 
+{ /* Tag区分两个堆栈*/
+    if(Tag==1) /*对第一个堆栈操作 */ 
+    { 
+        if ( PtrS-&gt;Top1 == -1 )  /*堆栈1空 */
+        { 
+            printf(“堆栈1空”); 
+            return NULL;
+        } else 
+            return PtrS-&gt;Data[(PtrS-&gt;Top1)--]; // 先抛出再对top-1
+    } else /* 对第二个堆栈操作 */
+    { 
+        if ( PtrS-&gt;Top2 == MaxSize )  /*堆栈2空 */
+        {        
+            printf(“堆栈2空”); 
+            return NULL;
+        } 
+        else 
+            return PtrS-&gt;Data[(PtrS-&gt;Top2)++]; // 先抛出再对top+1
+    } 
+}
+</code></pre>
+<h2 id="_2">堆栈的链式存储实</h2>
+<p>栈的链式存储结构实际上就是一个单链表，叫做链栈。插入和删 除操作只能在链栈的栈顶进行。  </p>
+<pre><code class="language-c">typedef struct SNode *Stack; struct SNode{
+    ElementType Data;
+    struct SNode *Next; 
+};
+</code></pre>
+<p>初始化(建立空栈)</p>
+<pre><code class="language-c">Stack CreateStack()
+{ /* 构建一个堆栈的头结点，返回指针 */
+    Stack S;
+    S =(Stack)malloc(sizeof(struct SNode)); 
+    S-&gt;Next = NULL;
+    return S;
+}
+</code></pre>
+<p>判断堆栈S是否为空</p>
+<pre><code class="language-c">int IsEmpty(Stack S) /*判断堆栈S是否为空，若为空函数返回1，否则返回0 */
+{ 
+   return ( S-&gt;Next == NULL );
+}
+</code></pre>
+<ul>
+<li>入栈 Push  </li>
+</ul>
+<pre><code class="language-c">void Push( ElementType item, Stack S) /* 将元素item压入堆栈S */
+{ 
+    struct SNode *TmpCell;
+    TmpCell=(struct SNode *)malloc(sizeof(struct SNode))
+    TmpCell-&gt;Element = item;
+    TmpCell-&gt;Next = S-&gt;Next;  // 插到头结点的后面
+    S-&gt;Next = TmpCell;
+}
+</code></pre>
+<ul>
+<li>出栈 Top  </li>
+</ul>
+<pre><code class="language-c">ElementType Pop(Stack S)  /* 删除并返回堆栈S的栈顶元素 */
+{ 
+   struct SNode *FirstCell;
+   ElementType TopElem;
+   if( IsEmpty( S ) ) 
+    {
+        printf(“堆栈空”); 
+        return NULL; 
+    } 
+    else 
+    {
+        FirstCell = S-&gt;Next;
+        S-&gt;Next = FirstCell-&gt;Next; 
+        TopElem = FirstCell -&gt;Element; // 获得被删除的这个值,return出去
+        free(FirstCell);
+        return TopElem;
+    } 
+}
+</code></pre>
+<h2 id="_3">应用:表达式求值</h2>
+<ul>
+<li>运算数相对顺序不变  </li>
+<li>运算符号顺序发生改变: 需要存储“等待中”的运算符号,要将当前运算符号与“等待中”的最后一个运算符号比较<ul>
+<li>如果最后一个符号的优先级比较高,则出栈</li>
+<li>如果最后一个符号的优先级更低,则等待  </li>
+</ul>
+</li>
+</ul>
+<p>括号怎么办?<br />
+左括号(优先级比乘号*高.但左括号(在堆栈中优先级就降到最低, 左括号(优先级比加号+低.
+碰到右括号)后,括号内的计算结束,把堆栈内的抛出来,直到遇到左括号(.</p>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../Queue/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../Queue/" class="btn btn-xs btn-link">
+        Queue
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../u2exercise/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../u2exercise/" class="btn btn-xs btn-link">
+        EXERCISE
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content"><p>Copyright &copy; 2025 N0b0dy</p>
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

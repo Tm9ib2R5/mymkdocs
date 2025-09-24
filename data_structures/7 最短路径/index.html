@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>最短路径 - N0b0dy's blog</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "\u6700\u77ed\u8def\u5f84", url: "#_top", children: [
+              {title: "\u65e0\u6743\u56fe\u7684\u5355\u6e90\u6700\u77ed\u8def\u7b97\u6cd5", url: "#_2" },
+              {title: "\u6709\u6743\u56fe\u7684\u5355\u6e90\u6700\u77ed\u8def\u7b97\u6cd5", url: "#_3" },
+              {title: "\u591a\u6e90\u6700\u77ed\u8def\u7b97\u6cd5", url: "#_4" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+
+    <h1 id="_1">最短路径</h1>
+<p>在网络中，求两个不同顶点之间的所有路径 中，边的权值之和最小的那一条路径  </p>
+<h2 id="_2">无权图的单源最短路算法</h2>
+<p>按照递增(非递减)的顺序找出到各个顶 点的最短路<br />
+伪码描述:</p>
+<pre><code class="language-c">void Unweighted ( Vertex S )
+{ 
+    Enqueue(S, Q);
+    while(!IsEmpty(Q)){
+        V = Dequeue(Q);
+        for ( V 的每个邻接点 W )
+        if(dist[W]==-1 ){
+            dist[W] = dist[V]+1;
+            path[W] = V;
+            Enqueue(W, Q);
+        }
+    }
+}
+</code></pre>
+<p>实现<br />
+无权图的单源最短路算法 -  邻接表存储<br />
+dist[] path[]全部初始化为-1</p>
+<pre><code class="language-c">void Unweighted(LGraph Graph, int dist[], int path[], Vertex S){
+    Queue Q;
+    Vertex V;
+    PtrAdjVNode W;
+
+    Q = CreateQueue(Graph-&gt;Nv);  // 创建空队列,MaxSize为外部定义的常数
+    dist[S] = 0; // 初始化源点
+    AddQ(Q, S);
+
+    while (IsEmpty(Q))
+    {
+        V = DeleteQ(Q);
+        for( W = Graph.G[V].FirstEdge; W; W=W-&gt;Next)  // 对V的每个邻接点W-&gt;AdjV
+            if (dist[W-&gt;AdjV] == -1)
+            {  // W-&gt;AdjV 未被访问过
+                dist[W-&gt;AdjV] =dist[V] + 1;  /* W-&gt;AdjV到S的距离更新 */
+                path[W-&gt;AdjV] = V; /* 将V记录在S到W-&gt;AdjV的路径上 */
+                AddQ(Q, W-&gt;AdjV);
+            }
+    }
+}
+</code></pre>
+<h2 id="_3">有权图的单源最短路算法</h2>
+<p>Dijkstra 算法
+按照递增的顺序找出到各个顶点的最短路
+* 真正的最短路必须只经过S中的顶点<br />
+* 每次从未收录的顶点中选一个dist最小的收录
+* 增加一个v进入S，可能影响另外一个w的dist值 
+    * dist[w] = min{dist[w], dist[v] + <v,w>的权重}</p>
+<p>伪码</p>
+<pre><code class="language-c">void Dijkstra( Vertex s )
+{ 
+    while (1){
+        V = 未收录顶点中dist最小者; 
+        if ( 这样的V不存在 )
+            break;
+        collected[V] = true; 
+        for ( V 的每个邻接点 W ){
+            if ( collected[W] == false ){
+                if ( dist[V]+E&lt;V,W&gt; &lt; dist[W] ) {
+                    dist[W] = dist[V] + E&lt;V,W&gt; ;
+                    path[W] = V; 
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<p>算法实现
+邻接矩阵存储 - 有权图的单源最短路算法</p>
+<pre><code class="language-c">// 返回未被收录顶点中dist最小值
+Vertex FindMinDist(MGraph Graph, int dist[], int collected[]){
+    Vertex MinV, V;
+    int MinDist = INFINITY;
+
+    for(V=0; V&lt;Graph-&gt;Nv; V++){
+        if (collected[V] = false &amp;&amp; dist[V]&lt; MinDist){  /* 若V未被收录，且dist[V]更小 */
+            MinDist = dist[V];
+            MinV = V;  /* 更新对应顶点 */
+        }
+
+    }
+    if (MinDist &lt; INFINITY) /* 若找到最小dist */
+        return MinV; /* 返回对应的顶点下标 */
+    else return ERROR;  /* 若这样的顶点不存在，返回错误标记 */
+}
+
+
+bool Dijkstra(MGraph Graph, int dist[], int path[], Vertex S)
+{
+    int collected[MaxVertexNum];
+    Vertex V, W;
+
+    // 初始化dist[]和path[],邻接矩阵中不存在边的标记为INFINITY
+    for(V=0; V&lt;Graph-&gt;Nv; V++){
+        dist[V] = Graph-&gt;G[S][V];
+        if (dist[V]&lt;INFINITY)  // S到V有直接路径
+            path[V] = S;
+        else 
+            path[V] = -1;
+        collected[V] = false;
+    }
+    // 先将起点收入到集合中
+    dist[S] = 0;
+    collected[S] = true;
+
+    while(1)
+    {
+        V = FindMinDist(Graph, dist, collected); /* V = 未被收录顶点中dist最小者 */
+        if (V == ERROR)  /* 若这样的V已经不存在 */
+            break; 
+        collected[V] = true;
+        for(W=0; W&lt;Graph-&gt;Nv; W++){ // 对图中的每个顶点W
+            if(collected[W] == false &amp;&amp; Graph-&gt;G[V][W]&lt;INFINITY)
+            {  // 未被收录,且有边(是邻接点)
+                if ( Graph-&gt;G[V][W]&lt;0 ) /* 若有负边 */
+                    return false; /* 不能正确解决，返回错误标记 */
+
+                /* 若收录V使得dist[W]变小 */
+                if ( dist[V]+Graph-&gt;G[V][W] &lt; dist[W] ) {
+                    dist[W] = dist[V]+Graph-&gt;G[V][W]; /* 更新dist[W] */
+                    path[W] = V; /* 更新S到W的路径 */
+                }
+            }  
+        } // for循环结束, 每个V的邻接点W遍历完
+    }// while结束
+    return true;
+}
+</code></pre>
+<h2 id="_4">多源最短路算法</h2>
+<p>Floyd 算法  </p>
+<pre><code class="language-c">bool Floyd( MGraph Graph, WeightType D[][MaxVertexNum], Vertex path[][MaxVertexNum] )
+{
+    Vertex i, j, k;
+
+    /* 初始化 */
+    for ( i=0; i&lt;Graph-&gt;Nv; i++ )
+        for( j=0; j&lt;Graph-&gt;Nv; j++ ) {
+            D[i][j] = Graph-&gt;G[i][j];
+            path[i][j] = -1;
+        }
+
+    for( k=0; k&lt;Graph-&gt;Nv; k++ )
+        for( i=0; i&lt;Graph-&gt;Nv; i++ )
+            for( j=0; j&lt;Graph-&gt;Nv; j++ )
+                if( D[i][k] + D[k][j] &lt; D[i][j] ) {
+                    D[i][j] = D[i][k] + D[k][j];
+                    if ( i==j &amp;&amp; D[i][j]&lt;0 ) /* 若发现负值圈 */
+                        return false; /* 不能正确解决，返回错误标记 */
+                    path[i][j] = k;
+                }
+    return true; /* 算法执行完毕，返回正确标记 */
+}
+</code></pre>
+
+  <br>
+    
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content"><p>Copyright &copy; 2025 N0b0dy</p>
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
