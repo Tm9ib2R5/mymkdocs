@@ -11,7 +11,7 @@
     
     <link rel="shortcut icon" href="../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>zd - N0b0dy's blog</title>
+    <title>PYTORCH - N0b0dy's blog</title>
     <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
     <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
     <link href="../../css/base.css" rel="stylesheet">
@@ -57,20 +57,20 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../../pytorch/Data_Preprocessing/" class="btn btn-xs btn-default pull-right">
+      <a href="../../about.html" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../../pytorch/Data_Preprocessing/" class="btn btn-xs btn-link">
-        PYTORCH
+      <a href="../../about.html" class="btn btn-xs btn-link">
+        ABOUT
       </a>
     </div>
     
     <div class="wm-article-nav">
-      <a href="../../data_structures/heap/" class="btn btn-xs btn-default pull-left">
+      <a href="../../physic/zd/" class="btn btn-xs btn-default pull-left">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../../data_structures/heap/" class="btn btn-xs btn-link">
-        heap
+        Previous</a><a href="../../physic/zd/" class="btn btn-xs btn-link">
+        zd
       </a>
     </div>
     
@@ -78,8 +78,49 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
     
 
-    <p>由于不想敲代码
-<img alt="" src="../zd.jpg" /></p>
+    <p>为了能⽤深度学习来解决现实世界的问题，我们经常从预处理原始数据开始，⽽不是从那些准备好的张量格
+式数据开始。在Python中常⽤的数据分析⼯具中，我们通常使⽤pandas软件包。像庞⼤的Python⽣态系统中
+的许多其他扩展包⼀样，pandas可以与张量兼容。本节我们将简要介绍使⽤pandas预处理原始数据，并将原
+始数据转换为张量格式的步骤。后⾯的章节将介绍更多的数据预处理技术。</p>
+<pre><code class="language-py">import os
+import pandas as pd
+import torch
+
+# 创建目录和文件
+os.makedirs(os.path.join('..', 'data'), exist_ok=True)
+data_file = os.path.join('..', 'data', 'house_tiny.csv')
+with open(data_file, 'w') as f:
+    f.write('NumRooms,Alley,Price\n')
+    f.write('NA,Pave,127500\n')
+    f.write('2,NA,106000\n')
+    f.write('4,NA,178100\n')
+    f.write('NA,NA,140000\n')
+
+# 读取数据
+data = pd.read_csv(data_file)
+print(&quot;原始数据：&quot;)
+print(data)
+
+# 分离输入和输出
+inputs, outputs = data.iloc[:, 0:2], data.iloc[:, 2]
+
+# 处理输入缺失值
+inputs['NumRooms'] = pd.to_numeric(inputs['NumRooms'], errors='coerce')
+inputs['NumRooms'] = inputs['NumRooms'].fillna(inputs['NumRooms'].mean())
+
+# 让 Alley 的缺失值保持为 float('nan')，不要填字符串
+inputs['Alley'] = inputs['Alley'].replace('NA', float('nan'))  # 如果原始是字符串 NA
+inputs = pd.get_dummies(inputs, dummy_na=True)                 # 只会生成 Alley_nan（bool）
+
+# 强制转数值
+inputs = inputs.astype(float)          # 关键一步，确保全部为 float32
+X = torch.tensor(inputs.values, dtype=torch.float32)
+Y=torch.tensor(outputs.values, dtype=torch.float32)
+print(inputs.dtypes)   # 应该全是 float64
+print(inputs.values.dtype)  # 应该是 float64
+print(X,Y)
+
+</code></pre>
 
   <br>
     
@@ -92,20 +133,20 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../../pytorch/Data_Preprocessing/" class="btn btn-xs btn-default pull-right">
+      <a href="../../about.html" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../../pytorch/Data_Preprocessing/" class="btn btn-xs btn-link">
-        PYTORCH
+      <a href="../../about.html" class="btn btn-xs btn-link">
+        ABOUT
       </a>
     </div>
     
     <div class="wm-article-nav">
-      <a href="../../data_structures/heap/" class="btn btn-xs btn-default pull-left">
+      <a href="../../physic/zd/" class="btn btn-xs btn-default pull-left">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../../data_structures/heap/" class="btn btn-xs btn-link">
-        heap
+        Previous</a><a href="../../physic/zd/" class="btn btn-xs btn-link">
+        zd
       </a>
     </div>
     
