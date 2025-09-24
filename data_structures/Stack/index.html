@@ -34,7 +34,7 @@
         var pageToc = [
           {title: "\u5806\u6808 Stack", url: "#_top", children: [
               {title: "\u6808\u7684\u987a\u5e8f\u5b58\u50a8\u5b9e\u73b0", url: "#_1" },
-              {title: "\u5806\u6808\u7684\u94fe\u5f0f\u5b58\u50a8\u5b9e", url: "#_2" },
+              {title: "\u5806\u6808\u7684\u94fe\u5f0f\u5b58\u50a8\u5b9e\u73b0", url: "#_2" },
               {title: "\u5e94\u7528:\u8868\u8fbe\u5f0f\u6c42\u503c", url: "#_3" },
           ]},
         ];
@@ -185,7 +185,7 @@ S.Top2 = MaxSize; // 右边设为空（已经超出了MaxSize -1)
     } 
 }
 </code></pre>
-<h2 id="_2">堆栈的链式存储实</h2>
+<h2 id="_2">堆栈的链式存储实现</h2>
 <p>栈的链式存储结构实际上就是一个单链表，叫做链栈。插入和删 除操作只能在链栈的栈顶进行。  </p>
 <pre><code class="language-c">typedef struct SNode *Stack; struct SNode{
     ElementType Data;
